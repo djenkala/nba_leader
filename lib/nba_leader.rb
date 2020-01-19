@@ -1,0 +1,6 @@
+require "nokogiri"
+require "open-uri"
+require "colored"
+require_relative "./nba_leader/version"
+require_relative "./nba_leader/cli"
+require_relative "./nba_leader/leader"
