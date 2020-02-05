@@ -1,3 +1,5 @@
+require 'pry'
+
 class NbaLeader::Leader
   attr_accessor :name, :points
 
@@ -10,7 +12,20 @@ class NbaLeader::Leader
     leaders << self.scrape_leader_4
     leaders << self.scrape_leader_5
 
+
     leaders
+    #iterating through the leaders  and accomplishing what scrape_lead_no has been doing
+    a = @page.search("#contentAccess").each do |t|
+      text = t.text.strip.split("1986. Credit: Newsday/Jim Cummins")
+      newtext = text[1].split(". Credit: ")
+        newtext.each do |leader|
+          newertext = leader.split("Points: ")
+          x = newertext[1].split("Teams: ")
+          name = newertext[0].strip
+          points = x[0]
+          binding.pry
+        end
+    end
   end
 
   @page = Nokogiri::HTML(URI.open("https://www.newsday.com/sports/basketball/nba-career-scoring-leaders-1.22616900"))
