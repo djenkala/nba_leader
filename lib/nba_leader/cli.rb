@@ -9,8 +9,10 @@ class NbaLeader::CLI
   def list_leaders
     puts "Here are the NBA All-Time Leading Scorers:"
     @leaders = NbaLeader::Leader.scrape_leaders
-    @leaders.each.with_index(1) do |leader, i|
-      puts "#{i}. #{leader.name}"
+    @leaders.each do |l|
+      l.each.with_index(1) do |leader, i|
+        puts "#{i}. #{leader.name}"
+      end
     end
   end
 
